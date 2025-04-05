@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="registro-page">
+    <header>
+        <a href="index.html" class="logo">Vialidades Seguras</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="reportes.html">Reportar Infracción</a></li>
+                <li><a href="login.html">Iniciar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="registro-form">
+            <h1>Crear Cuenta</h1>
+            <p>Complete el formulario para registrarse.</p>
+            <form id="registroForm">
+                <label for="nombre_usuario">Nombre:</label>
+                <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+
+                <label for="apellido_usuario">Apellido:</label>
+                <input type="text" id="apellido_usuario" name="apellido_usuario" required>
+
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit" class="btn">Registrarse</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Vialidades Seguras. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/registro.js"></script>
+</body>
+</html>

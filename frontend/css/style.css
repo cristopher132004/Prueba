@@ -1,0 +1,645 @@
+
+
+body.home-page,
+body.report-page,
+body.login-page,
+body.registro-page,
+body.review-page {
+    min-height: 100vh; /* Asegura que al menos tenga la altura de la ventana */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding-top: 0.1rem; /* Ajusta la altura de tu header aquí */
+    background: linear-gradient(135deg, rgba(0, 98, 204, 0.7), rgba(143, 174, 207, 0.7));
+    color: white; /* Color de texto específico para estas páginas */
+}
+
+header {
+    background: transparent; /* Fondo transparente */
+    color: white;
+    padding: 0.1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: none;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    border: none;
+}
+
+header .logo {
+    font-size: 2.0rem;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    color: white; /* Inicialmente blanco */
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, white, white, white, white, #b8860b, #ffd700, #fff8dc, 
+    #ffd700, #b8860b, white, white);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 400% 100%;
+    animation: whiteToGold 15s infinite; /* Duración total del ciclo: 15 segundos */
+    animation-delay: 10s; /* Retraso de 10 segundos antes de la primera animación */
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes whiteToGold {
+    0% {
+        background-position: 0% 0; /* Blanco estático */
+    }
+    66.66% { /* Durante los primeros 10 segundos (aproximadamente) */
+        background-position: 0% 0; /* Se mantiene en blanco */
+    }
+    70% { /* Comienza la transición al dorado */
+        background-position: 100% 0;
+    }
+    100% { /* Finaliza la transición al dorado */
+        background-position: 200% 0;
+    }
+}
+
+header .logo:hover {
+    transform: scale(0.95);
+}
+
+.logo {
+    font-size: 2.0rem;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    color: white; /* Inicialmente blanco */
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, white, white, yellow, red, green);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* El texto se vuelve transparente para mostrar el fondo */
+    background-size: 400% 100%; /* Aumentamos el tamaño para incluir el blanco inicial */
+    animation: slideBackground 15s infinite;
+  }
+  
+  @keyframes slideBackground {
+    0% {
+      background-position: 0% 0; /* Blanco estático */
+    }
+    66.66% { /* 10 segundos / 15 segundos */
+      background-position: 0% 0; /* Se mantiene el blanco estático */
+    }
+    66.67% { /* Inicio inmediato del deslizamiento */
+      background-position: 0% 0;
+    }
+    100% { /* Finaliza el deslizamiento en los 5 segundos restantes */
+      background-position: -300% 0; /* Se desliza completamente a la izquierda */
+    }
+  }
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0.8rem; 
+    padding-right: 1.5rem; 
+    margin-right: 30px; 
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    padding: 8px 6px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: white;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+    border-radius: 15px; 
+}
+
+nav ul li a:hover {
+    background: #001429;
+    border-color: rgba(255, 255, 255, 0.8);
+    color: #007bff;
+    transform: scale(1.05);
+}
+
+
+.hero {
+    text-align: center;
+    padding: 10rem 8rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh; /* Asegúrate de que el hero tenga una altura */
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    background: linear-gradient(135deg, rgba(0, 98, 204, 0.7), rgba(143, 174, 207, 0.7)); /* Fondo de color base */
+    overflow: hidden; /* Para que la animación del pseudo-elemento no se salga */
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0; /* Inicialmente invisible */
+    z-index: -1; /* Detrás del contenido */
+    animation: fondoAnimado 15s infinite alternate; /* Animación para las imágenes */
+}
+
+@keyframes fondoAnimado {
+    0% {
+        background-image: url("../images-background/6.-18-wheeler-1.jpg"); /* Reemplaza con tus rutas */
+        transform: scale(1);
+        opacity: 0.8; /* Iniciar con cierta opacidad para el desvanecimiento */
+    }
+    33.33% {
+        background-image: url("../images-background/6582454569510.jpeg");
+        transform: scale(1.05); /* Ligeramente acercado */
+        opacity: 1; /* Se vuelve completamente visible */
+    }
+    66.66% {
+        background-image: url("../images-background/accidentes-de-trafico.jpg"); /* Cambia la imagen */
+        transform: scale(1.1); /* Un poco más acercado */
+        opacity: 0.8; /* Comienza a desvanecerse */
+    }
+    100% {
+        background-image: url("../images-background/tipos-mas-comunes-de-accidentes-de-motocicleta-scaled.jpg"); /* Cambia la imagen */
+        transform: scale(1); /* Vuelve a la escala original (o a la inicial de la siguiente imagen) */
+        opacity: 1; /* Se vuelve completamente visible */
+    }
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+    background: white;
+    color: #007bff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero .btn:hover {
+    background-color: #001429;
+    transform: scale(1.05); /* Efecto de expansión */
+}
+
+/*html, body {
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+**/
+
+footer {
+    text-align: center;
+    padding: 0.5rem; /* Reduje el padding vertical */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+footer p {
+    margin: 0; /* Asegúrate de que no haya márgenes adicionales en el párrafo */
+    font-size: 0.9rem;
+    color: white;
+}
+
+body.scrolled footer {
+    display: block;
+}
+
+.report-form {
+    background-color: rgba(255, 255, 255, 0.774);
+    padding: 2rem;
+    margin-top: 4.5rem; /* Ajusta este valor para subirlo un poco */
+    margin-left: auto; /* Empuja el elemento hacia la derecha */
+    margin-right: 2rem; /* Añade un margen derecho para separarlo del borde */
+    max-width: 380px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.report-form h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 0.8rem; /* Reducir el margen inferior */
+    font-size: 1.4rem; /* Reducir el tamaño del encabezado */
+}
+
+.report-form p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 1rem; /* Reducir el margen inferior */
+    font-size: 0.9rem; /* Reducir el tamaño del párrafo */
+}
+
+.report-form label {
+    font-weight: bold;
+    margin-top: 0.8rem; /* Reducir el margen superior */
+    color: #333;
+    font-size: 0.9rem; /* Reducir el tamaño de la etiqueta */
+}
+
+.report-form input,
+.report-form textarea {
+    width: 95%;
+    padding: 0.5rem; /* Reducido de 0.75rem */
+    margin-top: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    font-size: 0.9rem; /* Conservando el tamaño de la fuente */
+}
+
+.report-form input:focus,
+.report-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.report-form textarea {
+    height: 100px; /* Reducir la altura por defecto */
+    resize: vertical;
+}
+
+.report-form input[type="file"] {
+    border: none;
+    color: black;
+    padding: 0.6rem; /* Reducir el padding */
+    font-size: 0.9rem; /* Reducir el tamaño del texto */
+}
+
+.report-form .btn {
+    margin-top: 1.2rem; /* Reducir el margen superior */
+    background: #007bff;
+    color: white;
+    padding: 0.8rem 1.5rem; /* Reducir el padding del botón */
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem; /* Reducir el tamaño del texto del botón */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.report-form .btn:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+.top-reports {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: #f8f9fa;
+}
+
+.top-reports h2 {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 1.5rem;
+}
+
+.reports-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.report-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    width: 280px;
+}
+
+.report-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.report-card h3 {
+    font-size: 1.3rem;
+    color: #333;
+    margin: 0.8rem 0;
+}
+
+.report-card p {
+    font-size: 1rem;
+    color: #666;
+    padding: 0 1rem 1rem;
+}
+
+.report-card:hover {
+    transform: scale(1.05);
+}
+
+
+.advice-container {
+    margin-top: -350px; /* Ajusta este valor según sea necesario */
+    margin-left: 100px;
+    position: relative; /* Necesario para posicionar los items absolutamente */
+    width: 50%;
+    height: 185px; /* Ajusta la altura para que quepa una línea de texto */
+    overflow: hidden; /* Oculta los items que no están activos */
+}
+
+.advice-item {
+    font-size: 2.8vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0; /* Inicialmente ocultos */
+    animation-timing-function: ease-in-out;
+    transition: opacity 15s ease-in-out, transform 15s ease-in-out; /* Transición más lenta */
+    transform-origin: center center; /* Centro de la animación de "respiración" */
+}
+
+.advice-item.active {
+    opacity: 1; /* Asegúrate de que la opacidad sea 1 para que se vea completamente */
+    animation: breathe 12s infinite alternate; /* Animación de "respiración" más lenta */
+    color: white;
+}
+
+@keyframes breathe {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05); /* Ligeramente más grande */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.registro-form-container {
+    width: 35%;
+    margin: 2rem 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login-form, .registro-form {
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background-color: rgba(255, 255, 255, 0.774);
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-form h1, .registro-form h1 {
+    color: #333;
+    font-size: 2rem;
+}
+
+.login-form p, .registro-form p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.login-form form, .registro-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form label, .registro-form label {
+    font-weight: bold;
+    margin-top: 1rem;
+    align-self: flex-start;
+    color: #333;
+}
+
+.login-form input, .registro-form input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.login-form input:focus, .registro-form input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.login-form .btn, .registro-form .btn {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    font-size: 1.1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-form .btn:hover, .registro-form .btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); 
+}
+
+.hero .desliza {
+    margin-top: 3rem;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ... tu CSS existente ... */
+.review-container h1 {
+    text-align: center; /* Centra el texto horizontalmente */
+    margin-top: -0.2rem; /* Añade un margen superior (ajusta el valor según necesites) */
+    margin-bottom: 1rem; /* Opcional: ajusta el margen inferior si es necesario */
+    color: #fff; /* Ya que el fondo de la sección es oscuro, el texto blanco se verá mejor */
+    font-size: 200%;
+}
+
+.review-container {
+    /* ... otros estilos que ya tengas para .review-container ... */
+    padding-top: 3rem; /* Ajusta el padding superior para dar más espacio al h1 si es necesario */
+}
+
+.report-card-blur {
+    background-color: rgba(255, 255, 255, 0.61); /* Fondo semitransparente para el blur */
+    border-radius: 15px;
+    margin: 1.5rem;
+    padding: 1.5rem;
+    width: 90%; /* Adapta el ancho a pantallas más pequeñas */
+    max-width: 400px; /* Ancho máximo para tarjetas en pantallas grandes */
+    box-sizing: border-box;
+    backdrop-filter: blur(10px); /* Aplica el efecto blur */
+    -webkit-backdrop-filter: blur(10px); /* Para navegadores Safari */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Borde sutil para mejorar la definición */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.report-content {
+    color: #333; /* Color del texto dentro de la tarjeta */
+}
+
+.report-card-blur h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: #222;
+}
+
+.report-card-blur p {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+.report-card-blur strong {
+    font-weight: bold;
+}
+
+.report-image-container {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden; /* Asegura que la imagen se mantenga dentro del borde redondeado */
+}
+
+.report-card-blur img {
+    display: block;
+    width: 100%;
+    max-height: 250px; /* Ajusta la altura máxima según necesites */
+    object-fit: cover; /* Cubre el contenedor manteniendo la proporción */
+}
+
+.moderator-actions {
+    display: flex;
+    justify-content: center; /* Mantiene los botones centrados */
+    gap: 1rem; /* Espacio entre los botones */
+    margin-top: 1rem;
+}
+
+.approve-btn,
+.reject-btn {
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.approve-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.reject-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.approve-btn:hover,
+.reject-btn:hover {
+    opacity: 0.9;
+}
+
+.sanction-btn {
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+    font-size: 0.95rem;
+    background-color: #ffc107; /* Color amarillo para advertencia/sanción */
+    color: #333; /* Color de texto oscuro */
+}
+
+.sanction-btn:hover {
+    opacity: 0.9;
+}
+
+#reportes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Alinea los elementos al inicio de la fila */
+    gap: 2rem; /* Espaciado entre tarjetas */
+    padding: 2rem;
+}
+
+.report-card-blur {
+    background-color: rgba(255, 255, 255, 0.61);
+    border-radius: 15px;
+    margin: 0; /* Elimina el margen individual para controlar el espaciado con gap */
+    padding: 1.5rem;
+    /* width: 90%; Ya no es necesario un ancho porcentual fijo aquí */
+    min-width: calc(33.33% - 2rem * 2 / 3); /* Ancho mínimo para 3 por fila (considerando el gap) */
+    max-width: 400px; /* Ancho máximo para las tarjetas */
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Permite que las tarjetas se expandan un poco para llenar el espacio */
+    flex-shrink: 0; /* Evita que se encojan demasiado rápido */
+}
+
+/* Ajusta el ancho máximo si es necesario para que quepan 3 cómodamente */
+@media (max-width: 900px) { /* Ejemplo de breakpoint para pantallas más pequeñas */
+    .report-card-blur {
+        min-width: calc(50% - 2rem / 2); /* Para 2 por fila en pantallas medianas */
+    }
+}
+
+@media (max-width: 600px) { /* Ejemplo de breakpoint para pantallas aún más pequeñas */
+    .report-card-blur {
+        min-width: 100%; /* Para 1 por fila en pantallas pequeñas */
+    }
+}

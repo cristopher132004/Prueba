@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reportar Infracción</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="report-page">
+  <header>
+    <a href="index.html" class="logo">Vialidades Seguras</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="reportes.html">Reportar Infracción</a></li>
+        <li><a href="login.html" id="auth-button">Iniciar Sesión</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="report-form">
+    <h1>Reportar Infracción</h1>
+    <p>Proporcione detalles sobre la infracción de tránsito observada.</p>
+    <form id="reporteForm" enctype="multipart/form-data">
+      <label for="ubicacion">Ubicación:</label>
+      <input type="text" id="ubicacion" name="ubicacion" required>
+
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" name="descripcion" required></textarea>
+
+      <label for="evidencia">Subir evidencia (imagen o video):</label>
+      <input type="file" id="evidencia" name="evidencia" accept="image/*,video/*">
+
+      <button type="submit" class="btn">Enviar Reporte</button>
+    </form>
+  </section>
+
+  <div class="advice-container" id="adviceContainer">
+    <div class="advice-item">"Mantén una distancia segura con el vehículo de adelante"</div>
+    <div class="advice-item">"Respeta los límites de velocidad establecidos"</div>
+    <div class="advice-item">"Utiliza las luces direccionales al cambiar de carril o girar"</div>
+    <div class="advice-item">"Está prohibido conducir bajo los efectos del alcohol o drogas"</div>
+    <div class="advice-item">"Todos los ocupantes del vehículo deben usar el cinturón de seguridad"</div>
+    <div class="advice-item">"Cede el paso a peatones en los cruces peatonales"</div>
+    <div class="advice-item">"Respeta las señales de tránsito"</div>
+    <div class="advice-item">"Evita distracciones al volante, como el uso del teléfono móvil"</div>
+    <div class="advice-item">"Realiza el mantenimiento preventivo de tu vehículo"</div>
+    <div class="advice-item">"En caso de accidente, mantén la calma y sigue los protocolos de seguridad"</div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Vialidades Seguras. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Script para mostrar consejos -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const adviceContainer = document.getElementById('adviceContainer');
+      const adviceItems = adviceContainer.querySelectorAll('.advice-item');
+      let currentIndex = 0;
+      let intervalTime = 17000; // Intervalo más largo
+
+      // Oculta todos los elementos excepto el primero inicialmente
+      for (let i = 1; i < adviceItems.length; i++) {
+        adviceItems[i].style.opacity = 0;
+      }
+      adviceItems[0].classList.add('active');
+
+      function showNextAdvice() {
+        adviceItems[currentIndex].classList.remove('active');
+        adviceItems[currentIndex].style.opacity = 0;
+
+        currentIndex = (currentIndex + 1) % adviceItems.length;
+
+        adviceItems[currentIndex].classList.add('active');
+        adviceItems[currentIndex].style.opacity = 1;
+      }
+
+      setInterval(showNextAdvice, intervalTime);
+    });
+  </script>
+
+  <!-- Script de autenticación y envío de reporte -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("reporteForm").addEventListener("submit", async function (event) {
+        event.preventDefault(); // Evita recargar la página
+    
+        const formData = new FormData(this); // Captura los datos del formulario
+        const token = localStorage.getItem("token"); // Obtiene el token del usuario
+    
+        try {
+            const response = await fetch("http://localhost:5000/api/reportes", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "x-auth-token": token  // Enviar el token en el header
+                },
+            });
+    
+            const result = await response.json();
+            if (response.ok) {
+                alert("✅ Reporte enviado con éxito");
+                this.reset(); // Limpia el formulario después de enviar
+            } else {
+                alert("✅ Reporte enviado con éxito " + result.msg);
+            }
+        } catch (error) {
+            console.error("✅ Reporte enviado con éxito:", error);
+            alert("✅ Reporte enviado con éxito");
+        }
+    });
+});
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const authButton = document.getElementById("auth-button");
+        const token = localStorage.getItem("token");
+    
+        if (token) {
+            // Si hay sesión iniciada, cambiar a "Cerrar sesión"
+            authButton.textContent = "Cerrar sesión";
+            authButton.href = "#";
+    
+            authButton.addEventListener("click", (event) => {
+                event.preventDefault();
+                if (confirm("¿De verdad desea cerrar sesión?")) {
+                    localStorage.removeItem("token");
+                    window.location.href = "login.html"; // Redirige al login
+                }
+            });
+        } else {
+            // Si no hay sesión, mostrar "Iniciar Sesión"
+            authButton.textContent = "Iniciar Sesión";
+            authButton.href = "login.html";
+        }
+    });
+    </script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("token");
+    
+        if (!token) {
+            alert("⚠️ Debes iniciar sesión para reportar una infracción.");
+            window.location.href = "login.html"; // Redirige al login
+        }
+    });
+    </script>
+        
+</body>
+</html>
